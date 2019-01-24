@@ -15,14 +15,25 @@ namespace lab10Jan19
             bool runP = true;
             while (runP == true)
             {            
-                Console.WriteLine("\nPlease enter the radius of a circle");
-                string input = Console.ReadLine();
-                Circle userCircle = new Circle(radius);
-                userCircle.Radius = double.Parse(input);
-                Console.WriteLine("\nThe area of your circle is " + userCircle.CalculateFormattedArea());
-                Console.WriteLine("\nThe circumference of your circle is " + userCircle.CalculateFormattedCircumference());
-                amountOfCircles++;
-                runP = Continue(amountOfCircles);
+                try
+                {
+                    Console.WriteLine("\nPlease enter the radius of a circle");
+                    string input = Console.ReadLine();
+                    Circle userCircle = new Circle(radius);
+                    userCircle.Radius = double.Parse(input);
+                    Console.WriteLine("\nThe area of your circle is " + userCircle.CalculateFormattedArea());
+                    Console.WriteLine("\nThe circumference of your circle is " + userCircle.CalculateFormattedCircumference());
+                    amountOfCircles++;
+                    runP = Continue(amountOfCircles);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Index is out of range exception");
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Incorrect format exception");
+                }
             }          
         }
         public static bool Continue(int amountOfCircles)
